@@ -84,9 +84,11 @@ if [ -n "${FILE_LIST_CMD}" ]; then
         done > "${DB_FILE}.files"
     fi
 else
-    find . -type f ! -name ${DB_FILE} | while read -r l; do
-        echo "\"${l}\""
-    done > "${DB_FILE}.files"
+    #find . -type f ! -name ${DB_FILE} | while read -r l; do
+    #    echo "\"${l}\""
+    #done > "${DB_FILE}.files"
+    find $(pwd) -type f \( -name "*.h" -o -name "*.c" -o -name "*.cpp" -o \
+    -iname "*.s" -o -iname "*.cc" -o -name "*.java" -o -name "*.go" \) > "${DB_FILE}.files"
 fi
 
 if [ ! -s "${DB_FILE}.files" ]; then
